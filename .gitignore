@@ -1,0 +1,10 @@
+
+# single files
+mysql.php
+
+# file extensions
+*.psd
+
+# directory
+app/lib/*
+assets/email/*

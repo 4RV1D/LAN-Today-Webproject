@@ -1,0 +1,98 @@
+//main: main.less
+
+header {
+  background: url('../img/background.png');
+  //background: url('http://www.extremetech.com/wp-content/uploads/2011/11/dreamhack-night-shot.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+
+  .logo {
+    max-width: 275px;
+    margin: 15px;
+    margin-right: 50px;
+    display: block;
+  }
+
+  #nav {
+    background: rgba(14, 15, 19, 0.75);
+    color: #d9e1e8;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+
+    h1 {
+      margin: 0px;
+      padding: 0px;
+      margin-right: 20px;
+      color: #d9e1e8;
+    } a {text-decoration: none;}
+
+    .wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0px;
+      padding: 0px;
+
+      a {
+        color: #d9e1e8;
+        text-decoration: none;
+        text-align: center;
+        flex: none;
+        cursor: pointer;
+      }
+
+      li {
+        flex: none;
+        padding: 25px;
+        border-bottom: 0px solid #6DAEDF;
+        transition: all .45s ease-in-out;
+      } li:hover {
+        background: rgba(0, 0, 0, 0.2);
+        border-bottom: 1px solid #6DAEDF;
+      }
+    }
+  }
+
+  #header-main {
+
+    .align {height: 20vh;}
+    .wrapper {
+    	display: flex;
+    	align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    h2 {text-align: center;}
+
+    .button {
+      text-decoration: none;
+      color: #D9E1E8;
+      background: #6DAEDF;
+      padding: 15px;
+      font-weight: bold;
+      font-family: sans-serif;
+      width: 25%;
+      text-align: center;
+      opacity: 0.8;
+      transition: opacity .5s ease-in-out, box-shadow .5s ease-in-out, color .5s ease-in-out;
+      cursor: pointer;
+    } .button:hover {
+      color: #D9E1E8;
+      opacity: 1;
+      box-shadow: 0px 0px 20px 4px rgba(0,0,0,0.30);
+    }
+
+  }
+}
