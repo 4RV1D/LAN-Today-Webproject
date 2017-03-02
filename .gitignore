@@ -1,6 +1,9 @@
 
 # single files
 mysql.php
+pay-test.php
+robots.txt
+.htaccess
 
 # file extensions
 *.psd
