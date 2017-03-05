@@ -1,5 +1,9 @@
 <?php
 
+  if (!$User->isLoggedIn()) {
+    header("Location: ?home");
+  }
+
   $Reservation = new Reservation();
   $bookedSeats = $Reservation->tablesReserved();
 
@@ -13,7 +17,6 @@
   $braintree_token = Braintree_ClientToken::generate();
 
   if (isset($_POST["reservedSeat"])) {
-    echo "hello!";
 
     $nonceFromTheClient = $_POST["payment_method_nonce"];
 
@@ -29,10 +32,16 @@
       // payment successful
       $transaction = $result->transaction;
       $reservedSeat = $_POST["reservedSeat"];
-      $Reservation->reserveSeat($_SESSION["logged-in"], $reservedSeat);
+      $favGame = $_POST["favGame"];
+      $steamID = $_POST["steamid"];
+
+      if ($Reservation->reserveSeat($_SESSION["logged-in"], $reservedSeat, $favGame, $steamID)) {
+        $_SESSION["paymentSuccess"] = "Din bokning gick igenom du har bokat platsen: " . $_POST["reservedSeat"] . ".";
+        header("Location: ?reserve");
+      }
 
     } else {
-      //payment error
+      // payment error
       $result->errors->deepAll();
     }
 
@@ -49,14 +58,17 @@
     <?php if (isset($_POST["reserve"])): ?>
       <div id="booking">
         <h1>Betalning</h1>
+        <br><a href="?reserve"><-- Gå tillbaka till platskarta</a><br>
         <form id="checkout" method="post" action="?reserve">
-          <p>Vad kommer vara ditt favorit spel det här lanet?</p>
+          <p>Vad kommer ditt favorit spel vara det här lanet?</p>
           <input type="text" class="field" name="favGame" placeholder="Counter Strike">
+          <p>Ditt steamID <i>(inte nödvändig)</i></p>
+          <input type="text" class="field" name="steamid" placeholder="username">
           <input type="text" class="gone" name="reservedSeat" value="<?php echo $_POST["seat"]; ?>">
-          <p>Din plats <?php echo $_POST["seat"]; ?> kostar 200kr</p>
           <div id="braintree">
             <div id="payment-form"></div>
-            <input type="submit" name="pay" class="button" value="Boka <?php echo $_POST["seat"]; ?> 200kr">
+            <p>Din plats <?php echo $_POST["seat"]; ?> kostar 200kr</p>
+            <input type="submit" name="pay" class="button" value="Boka">
           </div>
         </form>
       </div>
@@ -64,6 +76,10 @@
     <?php else: ?>
       <div id="placements">
         <h1>Boka din sittplats</h1>
+
+        <?php if (isset($_SESSION["paymentSuccess"])): ?>
+          <br><h3><?php echo $_SESSION["paymentSuccess"]; session_unset($_SESSION["paymentSuccess"]); ?></h3><br>
+        <?php endif; ?>
 
         <?php
           $i = 0; while ($i < 10) {

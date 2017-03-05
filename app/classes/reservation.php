@@ -52,18 +52,31 @@ class Reservation
 
     include __DIR__."/../mysql.php";
 
-  	$sql = "SELECT firstname, lastname, username, avatar, seat FROM users WHERE seat='$seat'";
+  	$sql = "SELECT firstname, lastname, username, avatar, seat, game, steam FROM users WHERE seat='$seat'";
   	$result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
       while($row = $result->fetch_assoc()) {
+
+        if ($row['game'] != "") {
+          $game = $row['game'];
+        } else {
+          $game = "Har inget favorit spel";
+        }
+
+        if ($row['steam'] != "") {
+          $steam = "<br/><a href='http://steamcommunity.com/id/" . $row['steam'] . "' target='_blank'>Steam account</a>";
+        } else {
+          $steam = "<br/>Inget steam account";
+        }
 
         return "<strong><a class='taken'>" . $seat . "</strong></a>
         <div class='hidden'>
           <div class='avatar' style='background: url(" . $row['avatar'] . "); background-size: cover; background-position: center;' ></div>
           <p><strong>" . $row['username'] . "</strong>
           <br/>" . $row['firstname'] . " " . $row['lastname'] . "
-          <br/>Counter Strike</p>
+          <br/>" . $game . "
+          " . $steam . "</p>
         </div>";
 
       }
@@ -94,17 +107,16 @@ class Reservation
     }
   }
 
-  function reserve($USERid, $seat) {
+  function reserveSeat($id, $seat, $favGame, $steamID) {
 
     include __DIR__."/../mysql.php";
 
-    $sql = "UPDATE users SET TableNum='$seat' WHERE USERid='$USERid'";
+    $sql = "UPDATE users SET seat='$seat', steam='$steamID', game='$favGame' WHERE id='$id'";
 
     if ($conn->query($sql) === TRUE) {
-        $_SESSION['reserve-success'] = "<p>Du har bokat plats " . $seat . "</p>";
-        header("Location: ?page=boka&plats=" . $seat . "");
+        return true;
     } else {
-        echo "Error: Din user finns inte.";
+        echo "Error! Det gick inte att boka.";
     }
   }
 

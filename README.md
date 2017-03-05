@@ -1,7 +1,5 @@
-# LAN Today Webproject
-This is a website which I made for a organisation that makes LAN events. It includes authentication, reservation system, admin panel &amp; cms. This is currently a work in progress
-
--------------------------------------------------
+# LAN Today
+This is the v3 off my LAN booking system
 
 # Swedish information about the organization
 Techlan är en förening som drivs huvudsakligen av 10 st spelintresserade grabbar på 16-18 år. Techlan grundades i oktober 2016 av Hampus Precenth och Linus Olander i hopp om att bli en förening som vem som helst kan gå med i som är intresserad av E Sport, spel och LAN. Våra Lan kommer gå under namnen LAN Today men föreningen heter Techlan.

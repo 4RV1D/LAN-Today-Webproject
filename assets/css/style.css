@@ -148,18 +148,19 @@
   background: rgba(0, 0, 0, 0.4);
   opacity: 0;
   transition: opacity 0.35s ease-in-out;
-  color: #f2f2f2;
+  color: #d9e1e8;
   cursor: pointer;
 }
 #profil .profil-information .upload:hover {
   opacity: 1;
 }
 #profil .profil-information .submit {
+  border-radius: 7px;
   display: none;
   position: relative;
   top: -80px;
   border: 0px;
-  color: #282c37;
+  color: #D9E1E8;
   background: #6DAEDF;
   padding: 15px;
   width: 85%;
@@ -318,6 +319,9 @@
 #reservation #placements .seats .hidden p {
   margin: 15px;
 }
+#reservation #placements .seats .hidden a {
+  color: #d9e1e8;
+}
 #reservation #placements .seats .hidden .avatar {
   width: 100px;
   height: 100px;
@@ -329,6 +333,12 @@
   flex-direction: column;
   text-align: left;
   padding: 50px;
+}
+#reservation #booking a {
+  color: #d9e1e8;
+}
+#reservation #booking #checkout .gone {
+  display: none;
 }
 #reservation #booking #checkout .field {
   background: rgba(0, 0, 0, 0);
@@ -382,11 +392,14 @@
   border: 10px solid white;
   border-radius: 5px;
 }
+#reservation #booking #checkout #braintree p {
+  color: #282c37;
+}
 #reservation #booking #checkout #braintree .button {
-  margin-top: 15px;
+  border-radius: 7px;
   border: 0px solid;
   text-decoration: none;
-  color: #282c37;
+  color: #D9E1E8;
   background: #6DAEDF;
   padding: 20px;
   font-weight: bold;
@@ -397,7 +410,7 @@
   transition: opacity 0.5s ease-in-out, box-shadow 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 #reservation #booking #checkout #braintree .button:hover {
-  color: #D9E1E8;
+  color: #f2f2f2;
   opacity: 1;
 }
 body {
@@ -511,6 +524,7 @@ header #header-main h2 {
   text-align: center;
 }
 header #header-main .button {
+  border-radius: 10px;
   text-decoration: none;
   color: #D9E1E8;
   background: #6DAEDF;
@@ -631,24 +645,6 @@ main .sponsors img {
 main .sponsors img:hover {
   opacity: 1;
   background: rgba(0, 0, 0, 0.3);
-}
-main .button {
-  text-decoration: none;
-  color: #282c37;
-  background: #6DAEDF;
-  padding: 20px;
-  font-weight: bold;
-  font-family: sans-serif;
-  width: 30%;
-  text-align: center;
-  opacity: 0.6;
-  transition: opacity 0.5s ease-in-out, box-shadow 0.5s ease-in-out, color 0.5s ease-in-out;
-  cursor: pointer;
-}
-main .button:hover {
-  color: #D9E1E8;
-  opacity: 1;
-  box-shadow: 0px 0px 20px 4px rgba(0, 0, 0, 0.3);
 }
 footer {
   background: #0E0F13;
